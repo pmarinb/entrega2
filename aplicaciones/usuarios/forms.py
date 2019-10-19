@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth import authenticate
-
+from .models import Usuario
 
 class Login(forms.Form):
     nombre_usuario = forms.CharField()
@@ -25,3 +25,9 @@ class Login(forms.Form):
         #se llama al metodo y limpia todo
         return super(Login, self).clean(*args, **kwargs)
 
+class UsuarioForm(forms.ModelForm):
+    class Meta:
+        model = Usuario
+        fields= [
+            'rut','nombre','apellido','email','usuario','contrasenia',
+        ]
